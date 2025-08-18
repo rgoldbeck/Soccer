@@ -6,6 +6,7 @@
 <meta http-equiv="Pragma" content="no-cache" />
 <meta http-equiv="Expires" content="0" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="robots" content="noindex,nofollow" />
 <title>Vampires - 6U Boys Schedule</title>
 <style>
   :root {
@@ -63,34 +64,61 @@
 
   .fields-img { width:100%; height:auto; display:block; border:1px solid #ccc; border-radius:8px; }
 
-
   /* Snack Signup button */
-.btn{
-  display:inline-block;
-  padding:10px 14px;
-  border-radius:10px;
-  text-decoration:none;
-  font-weight:700;
-  letter-spacing:.3px;
-  border:2px solid transparent;
-  transition: transform .05s ease-in-out, filter .15s ease-in-out;
-}
-.btn:active{ transform: translateY(1px); }
+  .btn{
+    display:inline-block;
+    padding:10px 14px;
+    border-radius:10px;
+    text-decoration:none;
+    font-weight:700;
+    letter-spacing:.3px;
+    border:2px solid transparent;
+    transition: transform .05s ease-in-out, filter .15s ease-in-out;
+  }
+  .btn:active{ transform: translateY(1px); }
 
-.btn-snack{
-  background:#2e7d32;    /* green */
-  color:#fff;
-  border-color:#1b5e20;
-}
-.btn-snack:hover{ filter:brightness(1.08); }
+  .btn-snack{
+    background:#2e7d32;    /* green */
+    color:#fff;
+    border-color:#1b5e20;
+  }
+  .btn-snack:hover{ filter:brightness(1.08); }
 
+  /* === MOBILE OVERRIDES: show full text, no ellipses === */
+  @media (max-width: 640px) {
+    /* give day cells more vertical space on phones */
+    :root { --cell-h: 96px; }
+    .cal th, .cal td { padding: 4px; }
+
+    /* let each badge line wrap instead of ellipsizing */
+    .badge { font-size:13px; padding:6px 8px; line-height:1.2; }
+    .badge .line1,
+    .badge .line2,
+    .badge .line3 {
+      white-space: normal !important;
+      overflow: visible !important;
+      text-overflow: clip !important;
+      overflow-wrap: anywhere;       /* break long words/venues if needed */
+      word-break: normal;
+      hyphens: auto;
+    }
+
+    /* small tweaks to header layout on narrow screens (visual only) */
+    .wrap { padding:16px; }
+  }
+
+  @media (max-width: 400px) {
+    /* extra headroom for very small phones */
+    :root { --cell-h: 110px; }
+    .badge { font-size:12px; }
+    .badge .line2, .badge .line3 { font-size:11px; }
+  }
 
   /* === PRINT OVERRIDES (LAST & with !important) === */
   @media print {
     @page { size: 8.5in 11in; margin: 0.25in; }
     html, body { margin:0 !important; padding:0 !important; }
     .wrap { width: 8.0in !important; margin: 0 !important; padding: 0 !important; }
-
 
     /* Force calendar compaction */
     :root { --cell-h: .60in !important; }
@@ -143,10 +171,9 @@
       max-height: 9.25in !important;
     }
 
-@media print {
-.btn{ display:none !important; }
-
-}
+    @media print {
+      .btn{ display:none !important; }
+    }
 
     /* Tighter list for fit */
     .elist .item { padding:3px 4px !important; margin:2px 0 !important; }
@@ -164,12 +191,13 @@
     <header class="hero-text">
       <h1>Vampires - 6U Boys</h1>
       <h2>Coaches</h2>
-    <a class="btn btn-snack"
-       href="https://www.signupgenius.com/go/10C0D45ACA722A4F9C07-58004215-vampires"
-       target="_blank" rel="noopener">
-      Snack Signup here with SignUpGenius
-    </a>    </header>
-    <img class="hero-img" alt="Coaches" src="https://res.cloudinary.com/dwsdvc5sd/image/upload/coaches.png?v=1755478049"/>
+      <a class="btn btn-snack"
+         href="https://www.signupgenius.com/go/10C0D45ACA722A4F9C07-58004215-vampires"
+         target="_blank" rel="noopener">
+        Snack Signup here with SignUpGenius
+      </a>
+    </header>
+    <img class="hero-img" alt="Coaches" src="https://res.cloudinary.com/dwsdvc5sd/image/upload/coaches.png?v=1755483052"/>
   </div>
 
   <!-- Calendars wrapper: ensures they stay together on page 1 -->
@@ -263,7 +291,6 @@
           <div class="badge away">
             <div class="line1">8:00 AM 3B</div>
             <div class="line2">VS Big Foot</div>
-            <div class="line3 snack">Snacks: Clara</div>
           </div>
         </td>
       </tr>
@@ -295,7 +322,6 @@
           <div class="badge away">
             <div class="line1">8:45 AM 3B</div>
             <div class="line2">VS Werewolves</div>
-            <div class="line3 snack">Snacks: Bonnie</div>
           </div>
         </td>
       </tr>
@@ -327,7 +353,6 @@
           <div class="badge home">
             <div class="line1">8:45 AM 3B</div>
             <div class="line2">VS Bogeyman</div>
-            <div class="line3 snack">Snacks: Joe</div>
           </div>
         </td>
       </tr>
@@ -340,7 +365,6 @@
           <div class="badge home">
             <div class="line1">5:30 PM 3B</div>
             <div class="line2">VS Bogeyman</div>
-            <div class="line3 snack">Snacks: Kim</div>
           </div>
         </td>
         <td class="day">
@@ -360,7 +384,6 @@
           <div class="badge home">
             <div class="line1">11:00 AM 3B</div>
             <div class="line2">VS Big Foot</div>
-            <div class="line3 snack">Snacks: Marley</div>
           </div>
         </td>
       </tr>
@@ -417,7 +440,6 @@
           <div class="badge away">
             <div class="line1">8:45 AM 3B</div>
             <div class="line2">VS Werewolves</div>
-            <div class="line3 snack">Snacks: Briana</div>
           </div>
         </td>
       </tr>
@@ -449,7 +471,6 @@
           <div class="badge home">
             <div class="line1">8:45 AM 3B</div>
             <div class="line2">VS Bogeyman</div>
-            <div class="line3 snack">Snacks: Zuker</div>
           </div>
         </td>
       </tr>
@@ -481,7 +502,6 @@
           <div class="badge away">
             <div class="line1">9:30 AM 3B</div>
             <div class="line2">VS Big Foot</div>
-            <div class="line3 snack">Snacks: Susan</div>
           </div>
         </td>
       </tr>
@@ -507,7 +527,6 @@
       <div class="text">
         <div class="what">3B • VS Big Foot</div>
         <div class="meta">Sat, Sep 06, 2025 • 8:00 AM</div>
-        <div class="snack">Snacks: Clara</div>
       </div>
     </li>
     <li class="item practice">
@@ -522,7 +541,6 @@
       <div class="text">
         <div class="what">3B • VS Werewolves</div>
         <div class="meta">Sat, Sep 13, 2025 • 8:45 AM</div>
-        <div class="snack">Snacks: Bonnie</div>
       </div>
     </li>
     <li class="item practice">
@@ -537,7 +555,6 @@
       <div class="text">
         <div class="what">3B • VS Bogeyman</div>
         <div class="meta">Sat, Sep 20, 2025 • 8:45 AM</div>
-        <div class="snack">Snacks: Joe</div>
       </div>
     </li>
     <li class="item home">
@@ -545,7 +562,6 @@
       <div class="text">
         <div class="what">3B • VS Bogeyman</div>
         <div class="meta">Mon, Sep 22, 2025 • 5:30 PM</div>
-        <div class="snack">Snacks: Kim</div>
       </div>
     </li>
     <li class="item home">
@@ -553,7 +569,6 @@
       <div class="text">
         <div class="what">3B • VS Big Foot</div>
         <div class="meta">Sat, Sep 27, 2025 • 11:00 AM</div>
-        <div class="snack">Snacks: Marley</div>
       </div>
     </li>
     <li class="item practice">
@@ -568,7 +583,6 @@
       <div class="text">
         <div class="what">3B • VS Werewolves</div>
         <div class="meta">Sat, Oct 04, 2025 • 8:45 AM</div>
-        <div class="snack">Snacks: Briana</div>
       </div>
     </li>
     <li class="item practice">
@@ -583,7 +597,6 @@
       <div class="text">
         <div class="what">3B • VS Bogeyman</div>
         <div class="meta">Sat, Oct 11, 2025 • 8:45 AM</div>
-        <div class="snack">Snacks: Zuker</div>
       </div>
     </li>
     <li class="item practice">
@@ -598,12 +611,11 @@
       <div class="text">
         <div class="what">3B • VS Big Foot</div>
         <div class="meta">Sat, Oct 18, 2025 • 9:30 AM</div>
-        <div class="snack">Snacks: Susan</div>
       </div>
     </li>
   </ul>
 </section>
-    <img class="fields-img" alt="Fields Map" src="https://res.cloudinary.com/dwsdvc5sd/image/upload/2025SOCCERFIELDS.png?v=1755478049"/>
+    <img class="fields-img" alt="Fields Map" src="https://res.cloudinary.com/dwsdvc5sd/image/upload/2025SOCCERFIELDS.png?v=1755483052"/>
   </div>
 
 </div>
