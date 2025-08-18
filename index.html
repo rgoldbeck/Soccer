@@ -24,7 +24,7 @@
   .hero .hero-text{ text-align:left; margin:0; text-transform:uppercase; }
   .hero .hero-text h1{ font-size:28px; letter-spacing:1px; margin:6px 0 4px; }
   .hero .hero-text h2{ font-size:18px; margin:0 0 8px; color:var(--muted); }
-  .hero-img{ max-width:275px; width:100%; height:auto; display:block; border:0; align-self:start; }
+  .hero-img{ max-width:200px; width:100%; height:auto; display:block; border:0; align-self:start; }
   @media (max-width: 900px){ .hero{ grid-template-columns: 1fr; } .hero .hero-text{ text-align:center; } .hero-img{ margin:0 auto; } }
 
   .month { break-inside: avoid; page-break-inside: avoid; margin: 12px 0 16px; }
@@ -64,33 +64,27 @@
 
   .fields-img { width:100%; height:auto; display:block; border:1px solid #ccc; border-radius:8px; }
 
-  /* Snack Signup button */
-  .btn{
-    display:inline-block;
-    padding:10px 14px;
-    border-radius:10px;
-    text-decoration:none;
-    font-weight:700;
-    letter-spacing:.3px;
-    border:2px solid transparent;
-    transition: transform .05s ease-in-out, filter .15s ease-in-out;
+  /* ===== Weather widget: full-width under header; compress on mobile; never prints ===== */
+  .weather-slot {
+    width: 100%;              /* same width as calendar (.wrap child) */
+    margin: 8px 0 14px;
+    clear: both;              /* guarantees no overlap with header grid */
   }
-  .btn:active{ transform: translateY(1px); }
+  /* No forced height on desktop: keep provider's natural height */
 
-  .btn-snack{
-    background:#2e7d32;    /* green */
-    color:#fff;
-    border-color:#1b5e20;
+  @media (max-width: 640px) {
+    .weather-slot { height: 64px; overflow: hidden; }
+    .weather-slot > * {
+      width: 100% !important;
+      transform: scaleY(0.78);       /* make it shorter on phones */
+      transform-origin: top left;
+    }
   }
-  .btn-snack:hover{ filter:brightness(1.08); }
 
   /* === MOBILE OVERRIDES: show full text, no ellipses === */
   @media (max-width: 640px) {
-    /* give day cells more vertical space on phones */
     :root { --cell-h: 96px; }
     .cal th, .cal td { padding: 4px; }
-
-    /* let each badge line wrap instead of ellipsizing */
     .badge { font-size:13px; padding:6px 8px; line-height:1.2; }
     .badge .line1,
     .badge .line2,
@@ -98,17 +92,14 @@
       white-space: normal !important;
       overflow: visible !important;
       text-overflow: clip !important;
-      overflow-wrap: anywhere;       /* break long words/venues if needed */
+      overflow-wrap: anywhere;
       word-break: normal;
       hyphens: auto;
     }
-
-    /* small tweaks to header layout on narrow screens (visual only) */
     .wrap { padding:16px; }
   }
 
   @media (max-width: 400px) {
-    /* extra headroom for very small phones */
     :root { --cell-h: 110px; }
     .badge { font-size:12px; }
     .badge .line2, .badge .line3 { font-size:11px; }
@@ -171,9 +162,9 @@
       max-height: 9.25in !important;
     }
 
-    @media print {
-      .btn{ display:none !important; }
-    }
+    /* Do not print buttons or weather widget */
+    .btn{ display:none !important; }
+    .weather-slot{ display:none !important; }
 
     /* Tighter list for fit */
     .elist .item { padding:3px 4px !important; margin:2px 0 !important; }
@@ -197,7 +188,16 @@
         Snack Signup here with SignUpGenius
       </a>
     </header>
-    <img class="hero-img" alt="Coaches" src="https://res.cloudinary.com/dwsdvc5sd/image/upload/coaches.png?v=1755483052"/>
+    <img class="hero-img" alt="Coaches" src="https://res.cloudinary.com/dwsdvc5sd/image/upload/coaches.png?v=1755488829"/>
+  </div>
+
+  <!-- Weather widget: under header, full width of calendar -->
+  <div class="weather-slot">
+    <a class="weatherwidget-io"
+       href="https://forecast7.com/en/44d81n91d50/eau-claire/?unit=us"
+       data-label_1="EAU CLAIRE"
+       data-label_2="WEATHER"
+       data-theme="original">EAU CLAIRE WEATHER</a>
   </div>
 
   <!-- Calendars wrapper: ensures they stay together on page 1 -->
@@ -615,8 +615,12 @@
     </li>
   </ul>
 </section>
-    <img class="fields-img" alt="Fields Map" src="https://res.cloudinary.com/dwsdvc5sd/image/upload/2025SOCCERFIELDS.png?v=1755483052"/>
+    <img class="fields-img" alt="Fields Map" src="https://res.cloudinary.com/dwsdvc5sd/image/upload/2025SOCCERFIELDS.png?v=1755488829"/>
   </div>
+
+  <!-- Weather widget script -->
+  <script src="https://weatherwidget.io/js/widget.min.js"></script>
+  <script>window.__weatherwidget_init && window.__weatherwidget_init();</script>
 
 </div>
 </body>
