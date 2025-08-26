@@ -36,7 +36,7 @@
   .cal td.day--empty { background: #e6e6e6; color: #8a8a8a; }
   .cal td.day--cutoff { background: #dcdcdc; color: #a0a0a0; }
 
-  .num { position:absolute; top:6px; right:8px; font-size:12px; color:var(--muted); }
+  .num { position:absolute; top:6px; right:8px; font-size:12px; font-weight;color:var(--ink); }
 
   .badge { margin-top: 12px; display:block; font-size:12px; padding:4px 6px; line-height:1.2; border-radius:10px; color:#fff; }
   .badge.home { background: var(--home); }
@@ -109,7 +109,7 @@
   @media print {
     @page { size: 8.5in 11in; margin: 0.25in; }
     html, body { margin:0 !important; padding:0 !important; }
-    .wrap { width: 8.0in !important; margin: 0 !important; padding: 0 !important; }
+    .wrap { width: 7.9in !important; margin: 0 !important; padding: 0 !important; }
 
     /* Force calendar compaction */
     :root { --cell-h: .60in !important; }
@@ -172,6 +172,25 @@
     .elist .text .meta { font-size:9px !important; }
     .elist .text .snack { font-size:9px !important; }
   }
+
+  /* --- Numbers: bold + before events --- */
+.day { display: flex; flex-direction: column; align-items: flex-end; }
+.num {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+
+/* --- Wrap width: 5px smaller --- */
+.wrap { max-width: 995px; margin:0 auto; padding:24px; }
+
+@media print {
+  .wrap { width: 7.95in !important; margin: 0 auto !important; padding: 0 !important; }
+}
+
+
+
 </style>
 </head>
 <body>
