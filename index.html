@@ -92,12 +92,11 @@
     .badge .line1,
     .badge .line2,
     .badge .line3 {
-      white-space: normal !important;
-      overflow: visible !important;
-      text-overflow: clip !important;
-      overflow-wrap: anywhere;
-      word-break: normal;
-      hyphens: auto;
+      white-space: nowrap !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+      display: block;
+      font-size: 11px !important;   /* smaller so it fits */
     }
     .wrap { padding:16px; }
   }
@@ -221,7 +220,7 @@
         Snack Signup here with SignUpGenius
       </a>
     </header>
-    <img class="hero-img" alt="Coaches" src="https://res.cloudinary.com/dwsdvc5sd/image/upload/coaches.png?v=1756321381"/>
+    <img class="hero-img" alt="Coaches" src="https://res.cloudinary.com/dwsdvc5sd/image/upload/coaches.png?v=1756325769"/>
   </div>
 
   <!-- Weather widget: under header, full width of calendar -->
@@ -622,7 +621,7 @@
     </li>
   </ul>
 </section>
-    <img class="fields-img" alt="Fields Map" src="https://res.cloudinary.com/dwsdvc5sd/image/upload/2025SOCCERFIELDS.png?v=1756321381"/>
+    <img class="fields-img" alt="Fields Map" src="https://res.cloudinary.com/dwsdvc5sd/image/upload/2025SOCCERFIELDS.png?v=1756325769"/>
   </div>
 
   <!-- Weather widget script -->
