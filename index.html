@@ -54,9 +54,9 @@
   .elist { list-style:none; margin:4px 0 0; padding:0; }
   .elist .item { display:flex; align-items:center; gap:6px; padding:4px 6px; border:1px solid #ccc; border-radius:8px; margin:3px 0; font-size:12px; }
   .elist .item.home { background: rgba(16,52,166,0.1); }
-  .elist .item.away { background: rgba(211,47,47,0.1); }
-  .elist .item.practice { background: rgba(253,216,53,0.16); }
-  .elist .item.picture { background: rgba(185,185,185,0.0); }
+    .elist .item.away { background: rgba(211,47,47,0.1); }
+    .elist .item.practice { background: rgba(253,216,53,0.16); }
+    .elist .item.picture { background: rgba(255,255,255,0.16); }
   .elist .dot { width:10px; height:10px; border-radius:50%; flex:0 0 10px; }
   .elist .dot.home { background: var(--home); }
   .elist .dot.away { background: var(--away); }
@@ -76,29 +76,24 @@
   }
 
   @media (max-width: 640px) {
-    .weather-slot { height: 64px; overflow: hidden; }
-    .weather-slot > * {
-      width: 100% !important;
-      transform: scaleY(0.78);
-      transform-origin: top left;
-    }
-  }
-
-  /* === MOBILE OVERRIDES: show full text, no ellipses === */
-  @media (max-width: 640px) {
     :root { --cell-h: 96px; }
     .cal th, .cal td { padding: 4px; }
     .badge { font-size:13px; padding:6px 8px; line-height:1.2; }
     .badge .line1,
     .badge .line2,
     .badge .line3 {
-      white-space: nowrap !important;
-      overflow: hidden !important;
-      text-overflow: ellipsis !important;
-      display: block;
-      font-size: 11px !important;   /* smaller so it fits */
+      white-space: normal !important;
+      overflow: visible !important;
+      text-overflow: clip !important;
+      overflow-wrap: anywhere;
+      word-break: normal;
+      hyphens: auto;
     }
     .wrap { padding:16px; }
+
+    /* === MOBILE: show only time inside badges (full text stays in list) === */
+    .full-text { display: none !important; }
+    .time-only { display: inline !important; font-weight: 700; }
   }
 
    /* === PRINT OVERRIDES (LAST & with !important) === */
@@ -204,6 +199,9 @@
     .elist .text .snack { font-size:9px !important; }
   }
 
+  /* Default visibility for the new mobile spans (desktop/print) */
+  .full-text { display: inline; }
+  .time-only { display: none; }
 </style>
 </head>
 <body>
@@ -220,7 +218,7 @@
         Snack Signup here with SignUpGenius
       </a>
     </header>
-    <img class="hero-img" alt="Coaches" src="https://res.cloudinary.com/dwsdvc5sd/image/upload/coaches.png?v=1756325769"/>
+    <img class="hero-img" alt="Coaches" src="https://res.cloudinary.com/dwsdvc5sd/image/upload/coaches.png?v=1756331170"/>
   </div>
 
   <!-- Weather widget: under header, full width of calendar -->
@@ -255,7 +253,7 @@
         <td class="day">
           <div class="num">2</div>
           <div class="badge practice">
-            <div class="line1">5:45 PM Practice Sherman Elem.</div>
+            <div class="line1"><span class="full-text">5:45 PM Practice Sherman Elem.</span><span class="time-only">5:45 PM</span></div>
           </div>
         </td>
         <td class="day">
@@ -270,8 +268,8 @@
         <td class="day">
           <div class="num">6</div>
           <div class="badge away">
-            <div class="line1">8:00 AM 3B</div>
-            <div class="line2">VS Big Foot</div>
+            <div class="line1"><span class="full-text">8:00 AM 3B</span><span class="time-only">8:00 AM</span></div>
+            <div class="line2"><span class="full-text">VS Big Foot</span></div>
           </div>
         </td>
       </tr>
@@ -285,7 +283,7 @@
         <td class="day">
           <div class="num">9</div>
           <div class="badge practice">
-            <div class="line1">5:45 PM Practice Sherman Elem.</div>
+            <div class="line1"><span class="full-text">5:45 PM Practice Sherman Elem.</span><span class="time-only">5:45 PM</span></div>
           </div>
         </td>
         <td class="day">
@@ -300,8 +298,8 @@
         <td class="day">
           <div class="num">13</div>
           <div class="badge away">
-            <div class="line1">8:45 AM 3B</div>
-            <div class="line2">VS Werewolves</div>
+            <div class="line1"><span class="full-text">8:45 AM 3B</span><span class="time-only">8:45 AM</span></div>
+            <div class="line2"><span class="full-text">VS Werewolves</span></div>
           </div>
         </td>
       </tr>
@@ -315,7 +313,7 @@
         <td class="day">
           <div class="num">16</div>
           <div class="badge practice">
-            <div class="line1">5:45 PM Practice Sherman Elem.</div>
+            <div class="line1"><span class="full-text">5:45 PM Practice Sherman Elem.</span><span class="time-only">5:45 PM</span></div>
           </div>
         </td>
         <td class="day">
@@ -330,11 +328,11 @@
         <td class="day">
           <div class="num">20</div>
           <div class="badge picture">
-            <div class="line1">Picture day</div>
+            <div class="line1"><span class="full-text">Picture day</span><span class="time-only"></span></div>
           </div>
           <div class="badge home">
-            <div class="line1">8:45 AM 3B</div>
-            <div class="line2">VS Bogeyman</div>
+            <div class="line1"><span class="full-text">8:45 AM 3B</span><span class="time-only">8:45 AM</span></div>
+            <div class="line2"><span class="full-text">VS Bogeyman</span></div>
           </div>
         </td>
       </tr>
@@ -345,8 +343,8 @@
         <td class="day">
           <div class="num">22</div>
           <div class="badge home">
-            <div class="line1">5:30 PM 3B</div>
-            <div class="line2">VS Bogeyman</div>
+            <div class="line1"><span class="full-text">5:30 PM 3B</span><span class="time-only">5:30 PM</span></div>
+            <div class="line2"><span class="full-text">VS Bogeyman</span></div>
           </div>
         </td>
         <td class="day">
@@ -364,11 +362,11 @@
         <td class="day">
           <div class="num">27</div>
           <div class="badge picture">
-            <div class="line1">Picture day</div>
+            <div class="line1"><span class="full-text">Picture day</span><span class="time-only"></span></div>
           </div>
           <div class="badge home">
-            <div class="line1">11:00 AM 3B</div>
-            <div class="line2">VS Big Foot</div>
+            <div class="line1"><span class="full-text">11:00 AM 3B</span><span class="time-only">11:00 AM</span></div>
+            <div class="line2"><span class="full-text">VS Big Foot</span></div>
           </div>
         </td>
       </tr>
@@ -382,7 +380,7 @@
         <td class="day">
           <div class="num">30</div>
           <div class="badge practice">
-            <div class="line1">5:45 PM Practice Sherman Elem.</div>
+            <div class="line1"><span class="full-text">5:45 PM Practice Sherman Elem.</span><span class="time-only">5:45 PM</span></div>
           </div>
         </td>
         <td class="day day--empty"></td>
@@ -422,11 +420,11 @@
         <td class="day">
           <div class="num">4</div>
           <div class="badge picture">
-            <div class="line1">MU Picture day</div>
+            <div class="line1"><span class="full-text">MU Picture day</span><span class="time-only"></span></div>
           </div>
           <div class="badge away">
-            <div class="line1">8:45 AM 3B</div>
-            <div class="line2">VS Werewolves</div>
+            <div class="line1"><span class="full-text">8:45 AM 3B</span><span class="time-only">8:45 AM</span></div>
+            <div class="line2"><span class="full-text">VS Werewolves</span></div>
           </div>
         </td>
       </tr>
@@ -440,7 +438,7 @@
         <td class="day">
           <div class="num">7</div>
           <div class="badge practice">
-            <div class="line1">5:45 PM Practice Sherman Elem.</div>
+            <div class="line1"><span class="full-text">5:45 PM Practice Sherman Elem.</span><span class="time-only">5:45 PM</span></div>
           </div>
         </td>
         <td class="day">
@@ -455,8 +453,8 @@
         <td class="day">
           <div class="num">11</div>
           <div class="badge home">
-            <div class="line1">8:45 AM 3B</div>
-            <div class="line2">VS Bogeyman</div>
+            <div class="line1"><span class="full-text">8:45 AM 3B</span><span class="time-only">8:45 AM</span></div>
+            <div class="line2"><span class="full-text">VS Bogeyman</span></div>
           </div>
         </td>
       </tr>
@@ -470,7 +468,7 @@
         <td class="day">
           <div class="num">14</div>
           <div class="badge practice">
-            <div class="line1">5:45 PM Practice Sherman Elem.</div>
+            <div class="line1"><span class="full-text">5:45 PM Practice Sherman Elem.</span><span class="time-only">5:45 PM</span></div>
           </div>
         </td>
         <td class="day">
@@ -485,8 +483,8 @@
         <td class="day">
           <div class="num">18</div>
           <div class="badge away">
-            <div class="line1">9:30 AM 3B</div>
-            <div class="line2">VS Big Foot</div>
+            <div class="line1"><span class="full-text">9:30 AM 3B</span><span class="time-only">9:30 AM</span></div>
+            <div class="line2"><span class="full-text">VS Big Foot</span></div>
           </div>
         </td>
       </tr>
@@ -621,7 +619,7 @@
     </li>
   </ul>
 </section>
-    <img class="fields-img" alt="Fields Map" src="https://res.cloudinary.com/dwsdvc5sd/image/upload/2025SOCCERFIELDS.png?v=1756325769"/>
+    <img class="fields-img" alt="Fields Map" src="https://res.cloudinary.com/dwsdvc5sd/image/upload/2025SOCCERFIELDS.png?v=1756331170"/>
   </div>
 
   <!-- Weather widget script -->
